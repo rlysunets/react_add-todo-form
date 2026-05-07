@@ -5,7 +5,20 @@ import './App.scss';
 import usersFromServer from './api/users';
 import todosFromServer from './api/todos';
 import { TodoList } from './components/TodoList';
-import { Todo } from './types/todo';
+
+type Todo = {
+  id: number;
+  title: string;
+  completed: boolean;
+  userId: number;
+  user: User;
+};
+
+type User = {
+  id: number;
+  name: string;
+  email: string;
+} | null;
 
 const getTodos = (): Todo[] => {
   return todosFromServer.map(todo => {

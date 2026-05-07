@@ -1,4 +1,8 @@
-import { User } from '../../types/user';
+type User = {
+  id: number;
+  name: string;
+  email: string;
+} | null;
 
 export const UserInfo = ({ user }: { user: User }) => {
   return (

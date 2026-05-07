@@ -1,5 +1,18 @@
-import { Todo } from '../../types/todo';
 import { TodoInfo } from '../TodoInfo';
+
+type Todo = {
+  id: number;
+  title: string;
+  completed: boolean;
+  userId: number;
+  user: User;
+};
+
+type User = {
+  id: number;
+  name: string;
+  email: string;
+} | null;
 
 export const TodoList = ({ todos }: { todos: Todo[] }) => {
   return (
