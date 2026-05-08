@@ -22,7 +22,7 @@ type User = {
 
 const getTodos = (): Todo[] => {
   return todosFromServer.map(todo => {
-    const user = usersFromServer.find(u => u.id === todo.userId);
+    const user = usersFromServer.find(item => item.id === todo.userId);
 
     return {
       ...todo,

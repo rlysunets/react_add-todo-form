@@ -17,7 +17,6 @@ type User = {
 export const TodoInfo = ({ todo }: { todo: Todo }) => {
   return (
     <article
-      key={todo.id}
       data-id={todo.id}
       className={`TodoInfo ${todo.completed ? 'TodoInfo--completed' : ''}`}
     >
