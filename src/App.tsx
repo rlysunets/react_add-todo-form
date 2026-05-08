@@ -18,6 +18,7 @@ type User = {
   id: number;
   name: string;
   email: string;
+  username: string;
 } | null;
 
 const getTodos = (): Todo[] => {
@@ -31,9 +32,8 @@ const getTodos = (): Todo[] => {
   });
 };
 
-const todos: Todo[] = getTodos();
-
 export const App = () => {
+  const [todos, setTodos] = useState<Todo[]>(getTodos());
   const [title, setTitle] = useState('');
   const [userId, setUserId] = useState(0);
   const [submitted, setSubmitted] = useState(false);
@@ -59,7 +59,7 @@ export const App = () => {
       user: usersFromServer.find(user => user.id === userId) || null,
     };
 
-    todos.push(newTodo);
+    setTodos([...todos, newTodo]);
 
     setTitle('');
     setUserId(0);
@@ -71,8 +71,13 @@ export const App = () => {
       <h1>Add todo form</h1>
 
       <form action="/api/todos" method="POST" onSubmit={onAddPost}>
+        <label htmlFor="title">
+          Title
+        </label>
+
         <div className="field">
           <input
+            id="title"
             type="text"
             data-cy="titleInput"
             placeholder="Enter title"
@@ -86,7 +91,12 @@ export const App = () => {
         </div>
 
         <div className="field">
+          <label htmlFor="user">
+            User
+          </label>
+          
           <select
+            id="user"
             data-cy="userSelect"
             value={userId}
             onChange={event => setUserId(Number(event.target.value))}
